@@ -21,21 +21,14 @@ function Rider() {
 
   const router = useRouter(); // Initialize useRouter
 
-  const fetchData = async () => {
-    setLoading(true);
-    try {
-      await listManager.fetchData();
-      setData(listManager.data);
-    } catch (error) {
-      toast.error("Failed to load data");
-      console.error("Failed to load data:", error);
-    } finally {
-      setLoading(false);
-    }
-  };
 
   useEffect(() => {
-    fetchData();
+     listManager.fetchData().then((response) => {
+       setData(listManager.data);
+     }).catch((error) => {
+       toast.error("Failed to load data");
+       console.error("Failed to load data:", error);
+     });
   }, []);
 
   const handleSearch = useCallback(

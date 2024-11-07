@@ -23,19 +23,37 @@ const menuItems = [
         href: "/riders",
         visible: ["admin", "user", "operation"],
       },
-    ],
-  },
-  {
-    title: "OTHER",
-    items: [
       {
-        icon: "/logout.png",
-        label: "Logout",
-        href: "#",
+        icon: "/barcode-scanner.png",
+        label: "Picker",
+        href: "/pickers",
+        visible: ["admin", "user", "operation"],
+      },
+      {
+        icon: "/clipboard.png",
+        label: "Pick List",
+        href: "/picklists",
+        visible: ["admin", "user", "operation"],
+      },
+      {
+        icon: "/target.png",
+        label: "Dropzone",
+        href: "/dropzones",
         visible: ["admin", "user", "operation"],
       },
     ],
   },
+  // {
+  //   title: "OTHER",
+  //   items: [
+  //     {
+  //       icon: "/logout.png",
+  //       label: "Logout",
+  //       href: "#",
+  //       visible: ["admin", "user", "operation"],
+  //     },
+  //   ],
+  // },
 ];
 
 const Menu = () => {
@@ -84,8 +102,8 @@ const Menu = () => {
                     onClick={handleLogoutClick} // Trigger the modal
                     className={`${styles.menuButton} ${isActive ? styles.menuButtonActive : ''} ${styles.logoutButton}`}
                   >
-                    <Image src={item.icon} alt="" width={20} height={20} />
-                    <span className="hidden lg:block">{item.label}</span>
+                    <Image src={item.icon} alt="" width={20} height={20} className={styles.menuIcon} />
+                    <span className={`${styles.menuLabel} hidden lg:block`}>{item.label}</span>
                   </button>
                 ) : (
                   <Link
@@ -93,8 +111,8 @@ const Menu = () => {
                     key={item.label}
                     className={`${styles.menuLink} ${isActive ? styles.menuLinkActive : ''}`}
                   >
-                    <Image src={item.icon} alt="" width={20} height={20} />
-                    <span className="hidden lg:block">{item.label}</span>
+                    <Image src={item.icon} alt="" width={20} height={20} className={styles.menuIcon} />
+                    <span className={`${styles.menuLabel} hidden lg:block`}>{item.label}</span>
                   </Link>
                 )
               );

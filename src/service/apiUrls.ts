@@ -16,6 +16,8 @@ export class APIUrls {
     readonly appCustomizationUrl = this.adminUrl + 'app-customization/';
     readonly salesmanUrl = this.adminUrl + 'salesman/';
     readonly riderUrl = this.adminUrl + 'rider';
+    readonly pickerUrl = this.adminUrl + 'picker';
+    readonly picklistUrl = this.adminUrl + 'picklist';
 }
 
 const apiUrls = new APIUrls();

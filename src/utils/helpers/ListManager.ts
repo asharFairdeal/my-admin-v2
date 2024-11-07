@@ -83,11 +83,15 @@ export class ListManager<T> {
         return this.query.page >= Math.ceil(total / this.query.limit);
     }
 
-    reset() {
+    async reset() {
         this.query.page = 1;
         this.query.search = '';
         // Reset other parameters as needed
-        this.fetchData(); // Refresh data
+        return this.fetchData(); // Refresh data
+    }
+
+    async refresh() {
+        return this.fetchData();
     }
 }
 

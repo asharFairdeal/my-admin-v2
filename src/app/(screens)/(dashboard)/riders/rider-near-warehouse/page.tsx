@@ -25,7 +25,7 @@ const RiderNearWarehouse = () => {
   
   // Set permanent query parameter for active orders
   useEffect(() => {
-    listManager.setFilter({ activeOrders: true  , status: "active" , approved : true , available : true});
+    listManager.setFilter({ activeOrders: true  , status: "active" , approved : true , available : true , isTripActive : true});
   }, [listManager]);
 
   const fetchData = async () => {
