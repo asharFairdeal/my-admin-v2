@@ -12,6 +12,7 @@ import Switch from "@/components/Switch/Switch";
 import moment from "moment";
 import { PickerStore } from "@/service/PickerStore";
 import Swal from "sweetalert2";
+import Link from "next/link";
 
 function Picker() {
   const [loading, setLoading] = useState(false);
@@ -22,21 +23,12 @@ function Picker() {
 
   const router = useRouter();
 
-  const fetchData = async () => {
-    setLoading(true);
-    try {
-      await listManager.fetchData();
-      setData(listManager.data);
-    } catch (error) {
-      toast.error("Failed to load data");
-      console.error("Failed to load data:", error);
-    } finally {
-      setLoading(false);
-    }
-  };
+
 
   useEffect(() => {
-    fetchData();
+    listManager.fetchData().then(() => {
+      setData(listManager.data);
+    })
   }, []);
 
   const handleSearch = useCallback(
@@ -203,18 +195,24 @@ function Picker() {
         />
       ),
     },
-    // {
-    //   key: "view",
-    //   label: "View",
-    //   render: (row: any) => (
-    //     <button
-    //       onClick={() => router.push(`/pickers/${row._id}`)}
-    //       className='btn bg-blue-400 btn-sm'
-    //     >
-    //       <span>View</span>
-    //     </button>
-    //   ),
-    // },
+    {
+      key: "view",
+      label: "View",
+      render: (row: any) => (
+        <Link
+          href={`/pickers/${row._id}`}
+          className='btn bg-blue-400 btn-sm'
+        >
+          <span>View</span>
+        </Link>
+        // <button
+        //   onClick={() => router.push(`/pickers/${row._id}`)}
+        //   className='btn bg-blue-400 btn-sm'
+        // >
+        //   <span>View</span>
+        // </button>
+      ),
+    },
   ];
 
   return (
